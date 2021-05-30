@@ -361,10 +361,10 @@ export default function Home() {
               </StyledBioTitle>
               <StyledDateContainer>
                 <StyledBiLeftArrow />
-                <StyledDate>09:00</StyledDate>
-                <StyledDate>10:00</StyledDate>
-                <StyledDate>11:00</StyledDate>
-                <StyledDate>12:00</StyledDate>
+                <StyledDate active={false}>09:00</StyledDate>
+                <StyledDate active={true}>10:00</StyledDate>
+                <StyledDate active={false}>11:00</StyledDate>
+                <StyledDate active={false}>12:00</StyledDate>
                 <StyledBiRightArrow />
               </StyledDateContainer>
               <StyledBioTitle>
