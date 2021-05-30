@@ -235,6 +235,7 @@ const StyledEmail = styled.input`
 
 export default function Home() {
   const [showAppointment, setShowAppointments] = useState(false);
+  const [multipl, setMultipl] = useState(0);
   return (
     <OuterContainer>
       <LeftContainer></LeftContainer>
@@ -288,29 +289,39 @@ export default function Home() {
                 <StyledCalendarIcon /> Datum
               </StyledBioTitle>
               <StyledDateContainer>
-                <StyledBiLeftArrow />
+                <StyledBiLeftArrow
+                  onClick={() => {
+                    setMultipl(multipl - 1);
+                  }}
+                />
                 <StyledDate>
-                  {dayjs().day(7).add(7, 'day').format('DD.MM.YY')}
+                  {dayjs().day(4).add(multipl, 'week').format('DD.MM.YY')}
                 </StyledDate>
                 <StyledDate>
-                  {dayjs().day(8).add(7, 'day').format('DD.MM.YY')}
+                  {dayjs().day(5).add(multipl, 'week').format('DD.MM.YY')}
                 </StyledDate>
                 <StyledDate>
-                  {dayjs().day(9).add(7, 'day').format('DD.MM.YY')}
+                  {dayjs().day(6).add(multipl, 'week').format('DD.MM.YY')}
                 </StyledDate>
                 <StyledDate>
-                  {dayjs().day(10).add(7, 'day').format('DD.MM.YY')}
+                  {dayjs().day(7).add(multipl, 'week').format('DD.MM.YY')}
                 </StyledDate>
-                <StyledBiRightArrow />
+                <StyledBiRightArrow
+                  onClick={() => {
+                    setMultipl(multipl + 1);
+                  }}
+                />
               </StyledDateContainer>
               <StyledBioTitle>
                 <StyledAiOutlineClockCircle /> Slot-Time
               </StyledBioTitle>
               <StyledDateContainer>
+                <StyledBiLeftArrow />
                 <StyledDate>09:00</StyledDate>
                 <StyledDate>10:00</StyledDate>
                 <StyledDate>11:00</StyledDate>
                 <StyledDate>12:00</StyledDate>
+                <StyledBiRightArrow />
               </StyledDateContainer>
               <StyledBioTitle>
                 <StyledAiOutlineMail /> E-Mail
