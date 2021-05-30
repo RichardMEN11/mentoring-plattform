@@ -197,8 +197,8 @@ const StyledBookingTitle = styled.h2`
   font-weight: 700;
 `;
 
-const StyledDate = styled.div`
-  border: 1px solid black;
+const StyledDate = styled.div<{ active: boolean }>`
+  border: ${(props) => (props.active ? '1px solid#fa1e5a' : '1px solid black')};
   padding: 3px 5px;
   border-radius: 3px;
   font-family: 'Livvic', sans-serif;
@@ -206,6 +206,7 @@ const StyledDate = styled.div`
   margin: 0px 5px;
   cursor: pointer;
   transition: all 0.2s ease-out;
+  color: ${(props) => (props.active ? '#fa1e5a' : 'black')};
   &:hover {
     border: 1px solid #fa1e5a;
     color: #fa1e5a;
@@ -236,6 +237,7 @@ const StyledEmail = styled.input`
 export default function Home() {
   const [showAppointment, setShowAppointments] = useState(false);
   const [multipl, setMultipl] = useState(0);
+  const [choosenDate, setChoosenDate] = useState('');
   return (
     <OuterContainer>
       <LeftContainer></LeftContainer>
@@ -289,21 +291,63 @@ export default function Home() {
                 <StyledCalendarIcon /> Datum
               </StyledBioTitle>
               <StyledDateContainer>
-                <StyledBiLeftArrow
-                  onClick={() => {
-                    setMultipl(multipl - 1);
-                  }}
-                />
-                <StyledDate>
+                {multipl > 0 && (
+                  <StyledBiLeftArrow
+                    onClick={() => {
+                      setMultipl(multipl - 1);
+                    }}
+                  />
+                )}
+                <StyledDate
+                  onClick={() =>
+                    setChoosenDate(
+                      dayjs().day(4).add(multipl, 'week').format('DD.MM.YY')
+                    )
+                  }
+                  active={
+                    dayjs().day(4).add(multipl, 'week').format('DD.MM.YY') ===
+                    choosenDate
+                  }
+                >
                   {dayjs().day(4).add(multipl, 'week').format('DD.MM.YY')}
                 </StyledDate>
-                <StyledDate>
+                <StyledDate
+                  onClick={() =>
+                    setChoosenDate(
+                      dayjs().day(5).add(multipl, 'week').format('DD.MM.YY')
+                    )
+                  }
+                  active={
+                    dayjs().day(5).add(multipl, 'week').format('DD.MM.YY') ===
+                    choosenDate
+                  }
+                >
                   {dayjs().day(5).add(multipl, 'week').format('DD.MM.YY')}
                 </StyledDate>
-                <StyledDate>
+                <StyledDate
+                  onClick={() =>
+                    setChoosenDate(
+                      dayjs().day(6).add(multipl, 'week').format('DD.MM.YY')
+                    )
+                  }
+                  active={
+                    dayjs().day(6).add(multipl, 'week').format('DD.MM.YY') ===
+                    choosenDate
+                  }
+                >
                   {dayjs().day(6).add(multipl, 'week').format('DD.MM.YY')}
                 </StyledDate>
-                <StyledDate>
+                <StyledDate
+                  onClick={() =>
+                    setChoosenDate(
+                      dayjs().day(7).add(multipl, 'week').format('DD.MM.YY')
+                    )
+                  }
+                  active={
+                    dayjs().day(7).add(multipl, 'week').format('DD.MM.YY') ===
+                    choosenDate
+                  }
+                >
                   {dayjs().day(7).add(multipl, 'week').format('DD.MM.YY')}
                 </StyledDate>
                 <StyledBiRightArrow
