@@ -167,6 +167,7 @@ const StyledInfo = styled.div<{ showsAppointment: boolean }>`
   @media (max-width: 576px) {
     min-width: unset;
     padding: 10px;
+    display: ${(props) => (props.showsAppointment ? 'none' : 'flex')};
   }
 `;
 
@@ -245,6 +246,7 @@ export default function Home() {
               }}
               scrolling="no"
               frameBorder="1"
+              allowFullScreen={true}
               width="100%"
               height="800px"
             ></iframe>
