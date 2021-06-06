@@ -244,11 +244,8 @@ export default function Home() {
                 border: 'none',
               }}
               scrolling="no"
-              frameborder="1"
-              marginheight="0px"
-              marginwidth="0px"
+              frameBorder="1"
               width="100%"
-              allowfullscreen=""
               height="800px"
             ></iframe>
           </StyledBookingSection>
