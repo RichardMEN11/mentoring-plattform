@@ -14,7 +14,7 @@ import dayjs from 'dayjs';
 
 const OuterContainer = styled.section`
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   position: relative;
 `;
@@ -40,6 +40,11 @@ const StyledCard = styled.div<{ showsAppointment: boolean }>`
   flex-direction: row;
   align-items: center;
   transition: all 0.7s ease-out;
+
+  @media (max-width: 576px) {
+    width: 90%;
+    flex-direction: column;
+  }
 `;
 
 const StyledImage = styled(Image)`
@@ -109,27 +114,6 @@ const StyledCalendarIcon = styled(AiOutlineCalendar)`
   vertical-align: middle;
 `;
 
-const StyledAiOutlineClockCircle = styled(AiOutlineClockCircle)`
-  margin-right: 5px;
-  vertical-align: middle;
-`;
-const StyledAiOutlineMail = styled(AiOutlineMail)`
-  margin-right: 5px;
-  vertical-align: middle;
-`;
-
-const StyledBiRightArrow = styled(BiRightArrow)`
-  vertical-align: middle;
-  cursor: pointer;
-  color: #fa1e5a;
-`;
-
-const StyledBiLeftArrow = styled(BiLeftArrow)`
-  vertical-align: middle;
-  cursor: pointer;
-  color: #fa1e5a;
-`;
-
 const StyledBtnSecondary = styled.a`
   text-align: center;
   white-space: nowrap;
@@ -145,6 +129,9 @@ const StyledBtnSecondary = styled.a`
   padding: 0.8em 1em 0.8em 1em;
   border: none;
   cursor: pointer;
+  @media (max-width: 576px) {
+    margin-top: 24px;
+  }
 `;
 
 const StyledButtonContainer = styled.div`
@@ -153,6 +140,9 @@ const StyledButtonContainer = styled.div`
   align-items: center;
   margin-top: 16px;
   margin-bottom: 24px;
+  @media (max-width: 576px) {
+    flex-direction: column;
+  }
 `;
 
 const StyledSocialsSection = styled.div`
@@ -173,6 +163,11 @@ const StyledInfo = styled.div<{ showsAppointment: boolean }>`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 576px) {
+    min-width: unset;
+    padding: 10px;
+  }
 `;
 
 const StyledBookingSection = styled.div<{ showsAppointment: boolean }>`
@@ -186,52 +181,9 @@ const StyledBookingSection = styled.div<{ showsAppointment: boolean }>`
   > div {
     width: 60%;
   }
-`;
-
-const StyledBookingTitle = styled.h2`
-  color: #212529;
-  font-size: 24px;
-  margin-top: 10px;
-  margin-bottom: 8px;
-  font-family: 'Livvic', sans-serif;
-  font-weight: 700;
-`;
-
-const StyledDate = styled.div<{ active: boolean }>`
-  border: ${(props) => (props.active ? '1px solid#fa1e5a' : '1px solid black')};
-  padding: 3px 5px;
-  border-radius: 3px;
-  font-family: 'Livvic', sans-serif;
-  font-weight: 300;
-  margin: 0px 5px;
-  cursor: pointer;
-  transition: all 0.2s ease-out;
-  color: ${(props) => (props.active ? '#fa1e5a' : 'black')};
-  &:hover {
-    border: 1px solid #fa1e5a;
-    color: #fa1e5a;
-    transform: scale(1.02);
+  @media (max-width: 576px) {
+    width: 100%;
   }
-`;
-
-const StyledDateContainer = styled.div`
-  display: flex;
-  margin-top: 10px;
-  margin-bottom: 12px;
-  align-items: center;
-`;
-
-const StyledEmail = styled.input`
-  margin-top: 10px;
-  font-family: 'Livvic', sans-serif;
-  font-weight: 300;
-  margin-right: 10px;
-  border-radius: 3px;
-  border: 1px solid black;
-  font-size: 14px;
-  padding: 8px 10px;
-  width: 100%;
-  margin-bottom: 56px;
 `;
 
 export default function Home() {
@@ -285,101 +237,20 @@ export default function Home() {
         </StyledInfo>
         {showAppointment && (
           <StyledBookingSection showsAppointment={showAppointment}>
-            <div>
-              <StyledBookingTitle>Termin Buchen</StyledBookingTitle>
-              <StyledBioTitle>
-                <StyledCalendarIcon /> Datum
-              </StyledBioTitle>
-              <StyledDateContainer>
-                {multipl > 0 && (
-                  <StyledBiLeftArrow
-                    onClick={() => {
-                      setMultipl(multipl - 1);
-                    }}
-                  />
-                )}
-                <StyledDate
-                  onClick={() =>
-                    setChoosenDate(
-                      dayjs().day(4).add(multipl, 'week').format('DD.MM.YY')
-                    )
-                  }
-                  active={
-                    dayjs().day(4).add(multipl, 'week').format('DD.MM.YY') ===
-                    choosenDate
-                  }
-                >
-                  {dayjs().day(4).add(multipl, 'week').format('DD.MM.YY')}
-                </StyledDate>
-                <StyledDate
-                  onClick={() =>
-                    setChoosenDate(
-                      dayjs().day(5).add(multipl, 'week').format('DD.MM.YY')
-                    )
-                  }
-                  active={
-                    dayjs().day(5).add(multipl, 'week').format('DD.MM.YY') ===
-                    choosenDate
-                  }
-                >
-                  {dayjs().day(5).add(multipl, 'week').format('DD.MM.YY')}
-                </StyledDate>
-                <StyledDate
-                  onClick={() =>
-                    setChoosenDate(
-                      dayjs().day(6).add(multipl, 'week').format('DD.MM.YY')
-                    )
-                  }
-                  active={
-                    dayjs().day(6).add(multipl, 'week').format('DD.MM.YY') ===
-                    choosenDate
-                  }
-                >
-                  {dayjs().day(6).add(multipl, 'week').format('DD.MM.YY')}
-                </StyledDate>
-                <StyledDate
-                  onClick={() =>
-                    setChoosenDate(
-                      dayjs().day(7).add(multipl, 'week').format('DD.MM.YY')
-                    )
-                  }
-                  active={
-                    dayjs().day(7).add(multipl, 'week').format('DD.MM.YY') ===
-                    choosenDate
-                  }
-                >
-                  {dayjs().day(7).add(multipl, 'week').format('DD.MM.YY')}
-                </StyledDate>
-                <StyledBiRightArrow
-                  onClick={() => {
-                    setMultipl(multipl + 1);
-                  }}
-                />
-              </StyledDateContainer>
-              <StyledBioTitle>
-                <StyledAiOutlineClockCircle /> Slot-Time
-              </StyledBioTitle>
-              <StyledDateContainer>
-                <StyledBiLeftArrow />
-                <StyledDate active={false}>09:00</StyledDate>
-                <StyledDate active={true}>10:00</StyledDate>
-                <StyledDate active={false}>11:00</StyledDate>
-                <StyledDate active={false}>12:00</StyledDate>
-                <StyledBiRightArrow />
-              </StyledDateContainer>
-              <StyledBioTitle>
-                <StyledAiOutlineMail /> E-Mail
-              </StyledBioTitle>
-              <StyledEmail
-                type="email"
-                placeholder="yourmail@awesome.com"
-              ></StyledEmail>
-              <StyledBtnSecondary
-                onClick={() => setShowAppointments(!showAppointment)}
-              >
-                <StyledCalendarIcon></StyledCalendarIcon>Book Appointment
-              </StyledBtnSecondary>
-            </div>
+            <iframe
+              src="https://koalendar.com/e/meet-with-richard-menning?embed=true"
+              name="koalendar-iframe"
+              style={{
+                border: 'none',
+              }}
+              scrolling="no"
+              frameborder="1"
+              marginheight="0px"
+              marginwidth="0px"
+              width="100%"
+              allowfullscreen=""
+              height="800px"
+            ></iframe>
           </StyledBookingSection>
         )}
       </StyledCard>
